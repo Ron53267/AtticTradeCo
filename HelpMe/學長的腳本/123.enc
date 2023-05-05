@@ -1,0 +1,275 @@
+VERSION 10.27
+
+viewport: select_begin
+0 
+viewport: select_end
+viewport: background_type constant 
+viewport: constant_rgb 0 0 0 
+part: select_all
+part: select_begin
+ 1
+part: select_end
+part: visible OFF
+part: select_begin
+ 2
+part: select_end
+part: visible OFF
+part: select_begin
+ 3
+part: select_end
+part: visible OFF
+part: select_begin
+ 4
+part: select_end
+part: visible OFF
+part: select_begin
+ 5
+part: select_end
+part: visible OFF
+part: select_begin
+ 6
+part: select_end
+part: visible OFF
+part: select_begin
+ 7
+part: select_end
+part: visible OFF
+part: select_begin
+ 8
+part: select_end
+part: visible OFF
+part: select_begin
+ 9
+part: select_end
+part: visible OFF
+part: select_begin
+ 10
+part: select_end
+part: visible OFF
+part: select_begin
+ 11
+part: select_end
+part: visible OFF
+part: select_begin
+ 12
+part: select_end
+part: visible OFF
+part: select_begin
+ 13
+part: select_end
+part: visible OFF
+part: select_begin
+ 14
+part: select_end
+part: visible OFF
+part: select_begin
+ 15
+part: select_end
+part: visible OFF
+part: select_begin
+ 16
+part: select_end
+part: visible OFF
+part: select_begin
+ 17
+part: select_end
+part: visible OFF
+part: select_begin
+ 18
+part: select_end
+part: visible OFF
+part: select_begin
+ 19
+part: select_end
+part: visible OFF
+part: select_begin
+ 20
+part: select_end
+part: visible OFF
+part: select_begin
+ 21
+part: select_end
+part: visible OFF
+part: select_begin
+ 22
+part: select_end
+part: visible OFF
+part: select_begin
+ 23
+part: select_end
+part: visible OFF
+part: select_begin
+ 1
+part: select_end
+part: visible ON
+part: select_begin
+ 2
+part: select_end
+part: visible ON
+view_transf: zoom 0.911698878
+view_transf: zoom 0.470193326
+viewport: viewport_layout two_vertical 
+viewport: select_begin
+ 0
+viewport: select_end
+view_transf: translate 0.015967723 0.00112372776 0
+viewport: select_begin
+ 1
+viewport: select_end
+viewport: select_begin
+1 
+viewport: select_end
+viewport: background_type constant 
+viewport: constant_rgb 0 0 0 
+part: select_begin
+ 1
+part: select_end
+part: colorby_palette none
+part: colorby_rgb 0.0 1.0 0.0
+part: select_begin
+ 2
+part: select_end
+part: colorby_palette none
+part: colorby_rgb 1 1 1
+viewport: select_begin
+ 0
+viewport: select_end
+viewport: select_begin
+ 1
+viewport: select_end
+view_transf: zoom 0.955849409
+viewport: select_begin
+ 0
+viewport: select_end
+view_transf: rotate -49.8726082 -1.15100563 0
+view_transf: rotate -61.9108353 -1.85932338 0
+view_transf: rotate 26.6560516 -3.18740845 0
+view_transf: rotate 0 0 -4.43674946
+view_transf: rotate -2.00635672 -27.8898182 0
+view_transf: rotate 1.14650488 -2.56763029 0
+view_transf: rotate 3.43949318 -0.177079439 0
+view_transf: translate 0.000347126857 0.0139342798 0
+view_transf: rotate 0.859873295 1.32808506 0
+view_transf: rotate 0 0 -0.160578489
+view_transf: rotate -3.43949318 0.708312392 0
+view_transf: rotate 0 0 2.03189135
+view_transf: rotate 2.00637817 -0.973931551 0
+view_transf: rotate 0 0 -1.43312573
+viewport: select_begin
+0 
+viewport: select_end
+viewport: perspective OFF 
+view_transf: zoom 0.911698878
+view_transf: zoom 0.955849469
+view_transf: zoom 0.955849409
+view_transf: zoom 0.955849409
+view_transf: zoom 0.955849469
+viewport: select_begin
+0 
+viewport: select_end
+viewport: perspective ON 
+viewport: select_begin
+0 
+viewport: select_end
+viewport: perspective OFF 
+view_transf: zoom 0.867548347
+view_transf: zoom 0.911698878
+view_transf: zoom 0.955849469
+view_transf: translate 0.00115839706 -0.00704747066 0
+view_transf: zoom 0.779247165
+view_transf: zoom 1.08830106
+view_transf: translate 0.00135501241 0.00378338201 0
+view_transf: zoom 0.955849469
+view_transf: zoom 1.04415059
+view_transf: zoom 0.955849409
+view_transf: translate -6.46316767e-05 0.000784630072 0
+solution_time: current_step 142.000000
+solution_time: update_to_current
+solution_time: current_step 60.000000
+solution_time: update_to_current
+solution_time: play_forward
+solution_time: current_step 63.000000
+solution_time: update_to_current
+solution_time: stop
+solution_time: current_step 64.000000
+solution_time: update_to_current
+solution_time: current_step 82.000000
+solution_time: update_to_current
+solution_time: current_step 84.000000
+solution_time: update_to_current
+solution_time: current_step 107.000000
+solution_time: update_to_current
+solution_time: current_step 101.000000
+solution_time: update_to_current
+view_transf: zoom 0.911698878
+view_transf: zoom 1.13245177
+view_transf: zoom 1.04415059
+view_transf: zoom 1.08830118
+view_transf: translate 0.000454978639 0.000859180233 0
+solution_time: play_forward
+solution_time: stop
+solution_time: current_step 106.000000
+solution_time: update_to_current
+view_transf: zoom 1.04415059
+solution_time: play_forward
+solution_time: stop
+solution_time: current_step 111.000000
+solution_time: update_to_current
+viewport: select_begin
+ 1
+viewport: select_end
+view_transf: zoom 0.514343917
+view_transf: zoom 0.911698878
+view_transf: view_recall +Z
+view_transf: zoom 0.867548287
+view_transf: zoom 0.514343858
+view_transf: zoom 0.514343858
+viewport: select_begin
+1 
+viewport: select_end
+viewport: perspective ON 
+viewport: select_begin
+1 
+viewport: select_end
+viewport: select_begin
+1 
+viewport: select_end
+viewport: perspective OFF 
+view_transf: zoom 0.823397756
+view_transf: zoom 0.911698878
+view_transf: translate 0.0180650838 0.000439047581 0
+view_transf: zoom 0.867548287
+view_transf: zoom 0.867548347
+view_transf: zoom 0.911698878
+view_transf: translate 0.00238239695 0.00759194093 0
+view_transf: zoom 0.911698937
+view_transf: translate -0.000576943334 -0.00373544428 0
+view_transf: zoom 0.955849469
+view_transf: zoom 1.04415059
+view_transf: translate 0.000440334581 0.00148030207 0
+variables: activate temp
+variables: activate temp 
+isos: select_default 
+part: modify_begin 
+isos: variable temp 
+part: modify_end 
+isos: select_default 
+part: modify_begin 
+isos: component 0 0 0 
+part: modify_end 
+part: select_begin
+2 
+part: select_end
+isos: begin 
+part: description Isosurface part temp 
+isos: variable temp 
+isos: end 
+isos: create 
+part: select_begin
+ 24
+part: select_end
+part: modify_begin
+isos: value 2000
+part: modify_end
+part: colorby_palette none
+part: colorby_rgb 1.0 0.0 0.0
