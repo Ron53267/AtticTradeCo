@@ -30,7 +30,7 @@ const char* trackbar_range = "Range";
 //Function headers
 void Processing_Data( int, void* );
 void SmoothValue(int, void* );
-//void InvertRange(int, void*);
+void InvertRange(int, void*);
 
 //Main Function
 int main(int, char** argv)
@@ -89,14 +89,17 @@ void SmoothValue(int, void*)
 void InvertRange(int, void*)
 {
     imgInvert = imgSmooth.clone();
+    imgSmooth.copyTo(imgInvert);
     if (Invert_range == 0){
-        imgSmooth.copyTo(imgInvert);
+        return;
     }
     else {
         float range = Invert_range / 100.0;
-
-    }
-    
-        
-    
+        int width = imgSmooth.size().width * range;
+        int height = imgSmooth.size().height;
+        Rect roi(0, 0, width, height);
+        Mat imgRange;
+        bitwise_not(imgSmooth(roi), imgRange);
+        imgRange(roi).copyTo(imgInvert(roi));
+    } 
 }
