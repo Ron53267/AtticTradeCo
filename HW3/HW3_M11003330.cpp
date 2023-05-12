@@ -1,13 +1,10 @@
 #include <iostream>
+#include <vector>
 #include <opencv2/opencv.hpp>
 #include <opencv2/core.hpp>
 #include <opencv2/imgcodecs.hpp>
 #include <opencv2/highgui.hpp>
 #include <opencv2/imgproc.hpp>
-
-
-//#include <stdlib.h>
-//#include <stdio.h>
 
 using namespace cv;
 using namespace std;
@@ -29,12 +26,15 @@ const char* trackbar_range = "Range";
 
 //Function headers
 void Processing_Data( int, void* );
-void SmoothValue(int, void* );
-void InvertRange(int, void*);
+void SmoothValueCbk(int, void* );
+void InvertRangeCbk(int, void*);
+void MouseCbk(int event, int x, int y, int flags, void* rnd_ptr);
 
 //Main Function
 int main(int, char** argv)
 {
+    bool programRunning = true;
+
     imgOrig = imread("Sun_oil.jpg", IMREAD_COLOR);
     imgOrig.copyTo(imgOut);
     
@@ -46,10 +46,24 @@ int main(int, char** argv)
     createTrackbar(trackbar_range,
         WINDOW_NAME, &Invert_range, max_range, Processing_Data);
 
-    //imgSmooth.copyTo(imgOut);
-    /*imshow(WINDOW_NAME, imgOut);*/
-
     Processing_Data(0, 0);
+    MouseCbk(0, 0);
+
+    while (programRunning) {
+        int keyAscii = waitKeyEx(1);
+        switch (keyAscii)
+        {
+        case 32: // space key pressed
+        case 82: // R key pressed
+        case 114: // r key pressed
+            //clear();
+            break;
+        case 27: // esc key pressed
+            programRunning = false;
+        default:
+            break;
+        }
+    }
 
     waitKey();
     destroyAllWindows();
@@ -63,20 +77,24 @@ void Processing_Data(int, void*)
     Mat imgHSV;
     cvtColor(imgOrig, imgHSV, COLOR_BGR2HSV);
     inRange(imgHSV, Scalar(0, 20, 80), Scalar(40, 255, 255), mask_HSV);
+
+    GaussianBlur(mask_HSV, mask_HSV, Size(5, 5), 0.0, 0.0);
+    threshold(mask_HSV, mask_HSV, 200, 255, cv::THRESH_BINARY);
+
     Mat erosion = getStructuringElement(MORPH_ELLIPSE, Size(13, 13));
     erode(mask_HSV, mask_HSV, erosion);
     GaussianBlur(imgOrig, imgBlur, Size(13, 13), 2.0, 2.0, 2);
 
-    SmoothValue(0, 0);
-    InvertRange(0, 0);
+    SmoothValueCbk(0, 0);
+    InvertRangeCbk(0, 0);
 
     imgInvert.copyTo(imgOut);
     imshow(WINDOW_NAME, imgOut);
 }
 
 
-//Function SmoothValue
-void SmoothValue(int, void*)
+//Function SmoothValue Call Back
+void SmoothValueCbk(int, void*)
 {
     float value = Smoothness_value / 100.0;
     imgOrig.copyTo(imgSmooth, ~mask_HSV);
@@ -85,8 +103,8 @@ void SmoothValue(int, void*)
 }
 
 
-//Function SmoothValue
-void InvertRange(int, void*)
+//Function InvertRange Call Back
+void InvertRangeCbk(int, void*)
 {
     imgInvert = imgSmooth.clone();
     imgSmooth.copyTo(imgInvert);
@@ -102,4 +120,15 @@ void InvertRange(int, void*)
         bitwise_not(imgSmooth(roi), imgRange);
         imgRange(roi).copyTo(imgInvert(roi));
     } 
+}
+
+//Function SmoothValue Call Back
+void MouseCbk(int event, int x, int y, int flags, void* rnd_ptr) {
+    if (event == EVENT_LBUTTONDOWN) {
+        mousePoints.push_back(Point(x, y));
+        if (mousePoints.size() >= 2) {
+            line(*static_cast<Mat*>(rnd_ptr), mousePoints[mousePoints.size() - 2], mousePoints.back(), Scalar(0, 0, 255), 2);
+        }
+        cout << "Mouse clicked at (" << x << ", " << y << ")" << endl;
+    }
 }
