@@ -65,6 +65,9 @@ int main(int, char** argv)
         case 114: // r 鍵
             // 清除畫面上所有點與線、清除CMD紀錄的鼠標位置
             mousePoints.clear();
+            // 重制所有滑桿
+            setTrackbarPos(trackbar_value, WINDOW_NAME , 0);
+            setTrackbarPos(trackbar_range, WINDOW_NAME, 0);
             Processing_Function(0, 0);
             system("cls");
             break;
