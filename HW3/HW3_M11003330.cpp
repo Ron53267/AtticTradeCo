@@ -16,8 +16,9 @@ int Invert_range = 0;
 int const max_value = 100;
 int const max_range = 100;
 
-Mat imgOrig, imgSmooth, imgInvert, imgOut;
+Mat imgOrig, imgSmooth, imgInvert, imgPlot, imgOut;
 Mat mask_HSV, imgBlur;
+vector<Point> mousePoints;
 
 const char* WINDOW_NAME = "HW3_M11003330";
 const char* trackbar_value = "Value";
@@ -30,6 +31,7 @@ void SmoothValueCbk(int, void* );
 void InvertRangeCbk(int, void*);
 void MouseCbk(int event, int x, int y, int flags, void* rnd_ptr);
 
+
 //Main Function
 int main(int, char** argv)
 {
@@ -39,6 +41,7 @@ int main(int, char** argv)
     imgOrig.copyTo(imgOut);
     
     namedWindow(WINDOW_NAME, WINDOW_AUTOSIZE);
+    setMouseCallback(WINDOW_NAME, MouseCbk, &imgPlot);
 
     createTrackbar(trackbar_value,
         WINDOW_NAME, &Smoothness_value, max_value, Processing_Data);
@@ -47,16 +50,17 @@ int main(int, char** argv)
         WINDOW_NAME, &Invert_range, max_range, Processing_Data);
 
     Processing_Data(0, 0);
-    MouseCbk(0, 0);
 
     while (programRunning) {
-        int keyAscii = waitKeyEx(1);
+        int keyAscii = waitKeyEx();
         switch (keyAscii)
         {
         case 32: // space key pressed
         case 82: // R key pressed
         case 114: // r key pressed
-            //clear();
+            mousePoints.clear();
+            Processing_Data(0, 0);
+            system("cls");
             break;
         case 27: // esc key pressed
             programRunning = false;
@@ -65,7 +69,6 @@ int main(int, char** argv)
         }
     }
 
-    waitKey();
     destroyAllWindows();
     return 0;
 }
@@ -85,11 +88,11 @@ void Processing_Data(int, void*)
     erode(mask_HSV, mask_HSV, erosion);
     GaussianBlur(imgOrig, imgBlur, Size(13, 13), 2.0, 2.0, 2);
 
+    
     SmoothValueCbk(0, 0);
     InvertRangeCbk(0, 0);
-
-    imgInvert.copyTo(imgOut);
-    imshow(WINDOW_NAME, imgOut);
+    imgInvert.copyTo(imgPlot);
+    MouseCbk(0, 0, 0, 0, &imgPlot);
 }
 
 
@@ -122,13 +125,22 @@ void InvertRangeCbk(int, void*)
     } 
 }
 
-//Function SmoothValue Call Back
-void MouseCbk(int event, int x, int y, int flags, void* rnd_ptr) {
+
+//Function Mouse Event Call Back
+void MouseCbk(int event, int x, int y, int flags, void* rnd_ptr) 
+{
     if (event == EVENT_LBUTTONDOWN) {
         mousePoints.push_back(Point(x, y));
-        if (mousePoints.size() >= 2) {
-            line(*static_cast<Mat*>(rnd_ptr), mousePoints[mousePoints.size() - 2], mousePoints.back(), Scalar(0, 0, 255), 2);
-        }
-        cout << "Mouse clicked at (" << x << ", " << y << ")" << endl;
+        cout << "[" << x << ", " << y << "]" << endl;
     }
+
+    for (size_t nPoint = 0; nPoint < mousePoints.size(); nPoint++) {
+        circle(imgPlot, mousePoints[nPoint], 8, Scalar(197, 102, 255), -1);
+    }
+
+    for (size_t nPoint = 1; nPoint < mousePoints.size(); nPoint++) {
+        line(imgPlot, mousePoints[nPoint - 1], mousePoints[nPoint], Scalar(237, 149, 100), 3, LineTypes::LINE_AA);
+    }
+    imgPlot.copyTo(imgOut);
+    imshow(WINDOW_NAME, imgOut);
 }
